@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8268a55-033e-4a55-8521-7385829819f0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/setenv.bat" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/szczep/model/Block.java" afterPath="$PROJECT_DIR$/src/main/java/pl/szczep/model/Block.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/szczep/model/BlockChainUtil.java" afterPath="$PROJECT_DIR$/src/main/java/pl/szczep/model/BlockChainValidatorUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/szczep/model/BlockChainUtilTest.java" afterPath="$PROJECT_DIR$/src/test/java/pl/szczep/model/BlockChainValidatorUtilTest.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_2.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_6_1.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,88 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="TestBlockChain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/TestBlockChain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="903">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Block.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/model/Block.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setenv.bat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setenv.bat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockChainValidatorUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/model/BlockChainValidatorUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="36" />
-              <folding>
-                <element signature="e#970#971#0" expanded="true" />
-                <element signature="e#1037#1038#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockChainValidatorUtilTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/pl/szczep/model/BlockChainValidatorUtilTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DigitalSignature.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/util/DigitalSignature.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -210,101 +137,6 @@
             <path>
               <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
               <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-              <item name="szczep" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-              <item name="szczep" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-              <item name="szczep" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-              <item name="szczep" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pl" type="462c0819:PsiDirectoryNode" />
-              <item name="szczep" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -560,7 +392,7 @@
       <workItem from="1525248210683" duration="7104000" />
       <workItem from="1525933307240" duration="594000" />
       <workItem from="1537446361566" duration="1196000" />
-      <workItem from="1539696991968" duration="926000" />
+      <workItem from="1539696991968" duration="972000" />
     </task>
     <servers />
   </component>
@@ -576,11 +408,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20266000" />
+    <option name="totallyTimeSpent" value="20312000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2578" height="1410" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -603,7 +434,7 @@
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18145484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18145484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -653,8 +484,8 @@
         <state relative-caret-position="105">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="36" />
           <folding>
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#970#971#0" expanded="false" />
+            <element signature="e#1037#1038#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -664,7 +495,7 @@
         <state relative-caret-position="420">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -682,7 +513,7 @@
         <state relative-caret-position="525">
           <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -708,8 +539,8 @@
         <state relative-caret-position="105">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="36" />
           <folding>
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#970#971#0" expanded="false" />
+            <element signature="e#1037#1038#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -719,7 +550,7 @@
         <state relative-caret-position="420">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -737,7 +568,7 @@
         <state relative-caret-position="525">
           <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,8 +594,8 @@
         <state relative-caret-position="105">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="36" />
           <folding>
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#970#971#0" expanded="false" />
+            <element signature="e#1037#1038#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -774,7 +605,7 @@
         <state relative-caret-position="420">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -792,7 +623,7 @@
         <state relative-caret-position="525">
           <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -917,18 +748,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/pl/szczep/TestBlockChainTest.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/setenv.bat">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/util/DigitalSignature.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/model/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        <state relative-caret-position="567">
+          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -941,41 +782,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/pl/szczep/model/BlockChainValidatorUtilTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/model/BlockChainValidatorUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="36" />
           <folding>
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#970#971#0" expanded="false" />
+            <element signature="e#1037#1038#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/model/Block.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/pl/szczep/model/BlockChainValidatorUtilTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        <state relative-caret-position="525">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setenv.bat">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/szczep/util/DigitalSignature.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+        <state relative-caret-position="147">
+          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
           <folding />
         </state>
       </provider>
