@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class BlockChainUtilTest {
+public class BlockChainValidatorUtilTest {
 
 
     @Test
@@ -18,7 +18,7 @@ public class BlockChainUtilTest {
         validBlockChain.add(new Block("Second block", validBlockChain.get(validBlockChain.size() - 1).hash));
         validBlockChain.add(new Block("Third block", validBlockChain.get(validBlockChain.size() - 1).hash));
 
-        assertThat(BlockChainUtil.isChainValid(validBlockChain)).isTrue();
+        assertThat(BlockChainValidatorUtil.isChainValid(validBlockChain)).isTrue();
     }
 
     @Test
@@ -29,7 +29,7 @@ public class BlockChainUtilTest {
         validBlockChain.add(new Block("Second block", "@#%@$%J#$OGERNER"));
         validBlockChain.add(new Block("Third block", validBlockChain.get(validBlockChain.size() - 1).hash));
 
-        assertThat(BlockChainUtil.isChainValid(validBlockChain)).isFalse();
+        assertThat(BlockChainValidatorUtil.isChainValid(validBlockChain)).isFalse();
     }
 
 

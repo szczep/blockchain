@@ -1,0 +1,1 @@
+call cfg git 2.18.0

@@ -3,7 +3,10 @@ package pl.szczep.model;
 
 import java.util.List;
 
-public class BlockChainUtil {
+public class BlockChainValidatorUtil {
+
+    private static int difficulty = 4;
+    private static String target = new String(new char[difficulty]).replace('\0', '0');
 
 
     public static Boolean isChainValid(List<Block> blockchain) {
@@ -24,4 +27,9 @@ public class BlockChainUtil {
         }
         return true;
     }
+
+    public static Boolean isHashCompilantToDifficultyPolicy(String hash) {
+        return hash.substring(0, difficulty).equals(target);
+    }
+
 }
