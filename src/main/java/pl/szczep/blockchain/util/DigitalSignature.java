@@ -3,6 +3,9 @@ package pl.szczep.blockchain.util;
 
 import java.security.MessageDigest;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class DigitalSignature {
 
     public static String applySha256(String input) {

@@ -1,6 +1,7 @@
 package pl.szczep.blockchain.model;
 
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
@@ -8,7 +9,7 @@ import lombok.Builder;
 import lombok.Singular;
 
 @Builder
-public class Blockchain {
+public class Blockchain implements Iterable<Block> {
 
     @Singular
     List<Block> blocks;
@@ -27,4 +28,20 @@ public class Blockchain {
     }
 
 
+    @Override
+    public Iterator<Block> iterator() {
+        return new Iterator<Block>() {
+            private int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                return position < blocks.size();
+            }
+
+            @Override
+            public Block next() {
+                return this.hasNext() ? blocks.get(position++) : null;
+            }
+        };
+    }
 }
