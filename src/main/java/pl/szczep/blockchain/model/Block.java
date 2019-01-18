@@ -6,6 +6,7 @@ import java.time.Instant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import pl.szczep.blockchain.util.BlockchainValidator;
 import pl.szczep.blockchain.util.DigitalSignature;
 
 
@@ -38,11 +39,10 @@ public class Block {
         );
     }
 
-    public void mineBlock(int difficulty) {
-        while (!BlockChainValidatorUtil.isHashCompilantToDifficultyPolicy(hash)) {
+    public void mineBlock() {
+        while (BlockchainValidator.isHashNotCompilantToDifficultyPolicy(this)) {
             nonce++;
             hash = calculateHash();
         }
-        System.out.println("Block Mined!!! : " + hash);
     }
 }
