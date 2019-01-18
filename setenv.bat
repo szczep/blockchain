@@ -1,1 +1,1 @@
-call cfg git 2.18.0
+call cfg git 2.18.0 jdk 1.8 maven 3
