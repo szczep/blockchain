@@ -25,8 +25,9 @@ public class BlockchainValidator {
         String prevHash = "";
         for (Block block : blockchain) {
 
-            if (isHashOfTheCurrentBlockInvalid(block) || isHashOfThePreviousBlockInvalid(block, prevHash) ||
-                isHashNotCompilantToDifficultyPolicy(block)) {
+            if (isHashOfTheCurrentBlockInvalid(block) ||
+                    isHashOfThePreviousBlockInvalid(block, prevHash) ||
+                    isHashNotCompilantToDifficultyPolicy(block)) {
                 return false;
             }
             prevHash = block.getHash();
