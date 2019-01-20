@@ -2,6 +2,7 @@ package pl.szczep.blockchain.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import pl.szczep.blockchain.util.DigitalSignature;
 import pl.szczep.blockchain.util.KeysHelper;
 
@@ -14,13 +15,17 @@ import java.util.List;
 public class Transaction {
 
     @Getter
+    @Setter
     private String transactionId;
-
+    @Getter
     private PublicKey sender;
+    @Getter
     private PublicKey recipient;
     private BigDecimal value;
 
+    @Getter
     private List<TransactionInput> inputs = new ArrayList<>();
+    @Getter
     private List<TransactionOutput> outputs = new ArrayList<>();
 
     private byte[] signature;

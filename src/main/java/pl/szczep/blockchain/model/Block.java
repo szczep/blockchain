@@ -60,6 +60,7 @@ public class Block {
         }
         transactions.add(transaction);
         merkleRoot = DigitalSignature.getMerkleRoot(transactions);
+        hash = calculateHash();
 
         System.out.println("Transaction Successfully added to Block");
         return true;

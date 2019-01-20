@@ -72,8 +72,7 @@ public class DigitalSignature {
             count = treeLayer.size();
             previousTreeLayer = treeLayer;
         }
-        String merkleRoot = (treeLayer.size() == 1) ? treeLayer.get(0) : "";
-        return merkleRoot;
+        return (treeLayer.size() == 1) ? treeLayer.get(0) : "";
     }
 
     private static String convertBytesToHexString(byte[] hash) {

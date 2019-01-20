@@ -15,6 +15,7 @@ public class TransactionOutput {
 
     @Getter
     private String id;
+    @Getter
     private PublicKey recipient;
     @Getter
     private BigDecimal value;

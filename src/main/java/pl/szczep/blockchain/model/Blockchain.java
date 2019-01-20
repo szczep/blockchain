@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.google.gson.GsonBuilder;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Singular;
 
 @Builder
@@ -20,6 +21,8 @@ public class Blockchain implements Iterable<Block> {
 
     public static BigDecimal minimumTransaction = new BigDecimal("0.01");
 
+    @Getter
+    private Transaction genesisTransaction;
 
     @Singular
     List<Block> blocks;

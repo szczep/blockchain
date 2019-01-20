@@ -8,8 +8,12 @@ import org.junit.Test;
 import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
 import pl.szczep.blockchain.model.Transaction;
+import pl.szczep.blockchain.model.TransactionOutput;
+import pl.szczep.blockchain.personal.Wallet;
 
+import java.math.BigDecimal;
 import java.security.Security;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
@@ -30,7 +34,9 @@ public class BlockchainValidatorTest {
     public void setUpBlockchain() {
         BlockchainValidator.setDifficulty(0);
 
+        final Transaction genesisTransaction = createGenesisTransaction();
         final Block block1 = Block.builder().previousHash("").build();
+        block1.addTransaction(genesisTransaction);
         final Block block2 = Block.builder().previousHash(block1.getHash()).build();
         final Block block3 = Block.builder().previousHash(block2.getHash()).build();
 
@@ -38,7 +44,39 @@ public class BlockchainValidatorTest {
                 .block(block1)
                 .block(block2)
                 .block(block3)
+                .genesisTransaction(genesisTransaction)
                 .build();
+    }
+
+
+    private Transaction createGenesisTransaction() {
+
+        Wallet coinbase = new Wallet();
+        Wallet walletA = new Wallet();
+
+
+        Transaction genesisTransaction = Transaction.builder()
+                .from(coinbase.getPublicKey())
+                .to(walletA.getPublicKey())
+                .value(BigDecimal.TEN)
+                .inputs(new ArrayList<>())
+                .build();
+
+        TransactionOutput transactionOutput = TransactionOutput.builder()
+                .id("ido1")
+                .recipient(coinbase.getPublicKey())
+                .parentTransactionId(genesisTransaction.getTransactionId())
+                .value(BigDecimal.TEN)
+                .build();
+
+
+        genesisTransaction.generateSignature(coinbase.getPrivateKey());
+        genesisTransaction.getOutputs().add(transactionOutput);
+
+        if (Blockchain.UTXOs.isEmpty())
+            Blockchain.UTXOs.put(transactionOutput.getId(), transactionOutput);
+
+        return genesisTransaction;
     }
 
     @Test
@@ -79,7 +117,10 @@ public class BlockchainValidatorTest {
     }
 
     private void setUpBlockchainWithMining() {
+        final Transaction genesisTransaction = createGenesisTransaction();
+
         final Block block1 = Block.builder().previousHash("").build();
+        block1.addTransaction(genesisTransaction);
         block1.mineBlock();
         final Block block2 = Block.builder().previousHash(block1.getHash()).build();
         block2.mineBlock();
@@ -90,6 +131,7 @@ public class BlockchainValidatorTest {
                 .block(block1)
                 .block(block2)
                 .block(block3)
+                .genesisTransaction(genesisTransaction)
                 .build();
     }
 }
