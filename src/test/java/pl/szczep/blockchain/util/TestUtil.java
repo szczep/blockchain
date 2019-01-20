@@ -61,6 +61,8 @@ public class TestUtil {
                 .inputs(new ArrayList<>())
                 .build();
 
+        genesisTransaction.setTransactionId("0");
+
         TransactionOutput transactionOutput = TransactionOutput.builder()
                 .id("ido1")
                 .recipient(coinbase.getPublicKey())

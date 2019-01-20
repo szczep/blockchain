@@ -39,16 +39,15 @@ public class BlockchainValidator {
             tempUTXOs.put(blockchain.getGenesisTransaction().getOutputs().get(0).getId(),
                     blockchain.getGenesisTransaction().getOutputs().get(0));
 
-            for(int t=0; t < block.transactions.size(); t++) {
-                Transaction currentTransaction = block.transactions.get(t);
+            for(Transaction currentTransaction: block.transactions) {
 
                 if(!currentTransaction.verifiySignature()) {
-                    System.out.println("#Signature on Transaction(" + t + ") is Invalid");
+                    System.out.println("#Signature on Transaction is Invalid");
                     return false;
                 }
 
-                if(currentTransaction.getInputsValue() != currentTransaction.getOutputsValue()) {
-                    System.out.println("#Inputs are note equal to outputs on Transaction(" + t + ")");
+                if(!currentTransaction.getInputsValue().equals(currentTransaction.getOutputsValue())) {
+                    System.out.println("#Inputs are note equal to outputs on Transaction");
                     return false;
                 }
 
@@ -56,12 +55,12 @@ public class BlockchainValidator {
                     tempOutput = tempUTXOs.get(input.getTransactionOutputId());
 
                     if(tempOutput == null) {
-                        System.out.println("#Referenced input on Transaction(" + t + ") is Missing");
+                        System.out.println("#Referenced input on Transaction is Missing");
                         return false;
                     }
 
-                    if(input.getUTXO().getValue() != tempOutput.getValue()) {
-                        System.out.println("#Referenced input Transaction(" + t + ") value is Invalid");
+                    if(!input.getUTXO().getValue().equals(tempOutput.getValue())) {
+                        System.out.println("#Referenced input Transaction value is Invalid");
                         return false;
                     }
 
@@ -73,11 +72,11 @@ public class BlockchainValidator {
                 }
 
                 if( currentTransaction.getOutputs().get(0).getRecipient() != currentTransaction.getRecipient()) {
-                    System.out.println("#Transaction(" + t + ") output reciepient is not who it should be");
+                    System.out.println("#Transaction output reciepient is not who it should be");
                     return false;
                 }
                 if( currentTransaction.getOutputs().get(1).getRecipient() != currentTransaction.getSender()) {
-                    System.out.println("#Transaction(" + t + ") output 'change' is not sender.");
+                    System.out.println("#Transaction output 'change' is not sender.");
                     return false;
                 }
 
