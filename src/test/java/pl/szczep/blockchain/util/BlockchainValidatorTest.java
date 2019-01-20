@@ -15,6 +15,8 @@ public class BlockchainValidatorTest {
 
     @Before
     public void setUpBlockchain(){
+        BlockchainValidator.setDifficulty(0);
+
         final Block block1 = Block.builder().data("Block #1").previousHash("").build();
         final Block block2 = Block.builder().data("Block #2").previousHash(block1.getHash()).build();
         final Block block3 = Block.builder().data("Block #3").previousHash(block2.getHash()).build();
