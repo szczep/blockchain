@@ -34,7 +34,7 @@ public class BlockchainValidatorTest {
     public void setUpBlockchain() {
         BlockchainValidator.setDifficulty(0);
 
-        final Transaction genesisTransaction = createGenesisTransaction();
+        final Transaction genesisTransaction = TestUtil.createGenesisTransaction();
         final Block block1 = Block.builder().previousHash("").build();
         block1.addTransaction(genesisTransaction);
         final Block block2 = Block.builder().previousHash(block1.getHash()).build();
@@ -49,35 +49,6 @@ public class BlockchainValidatorTest {
     }
 
 
-    private Transaction createGenesisTransaction() {
-
-        Wallet coinbase = new Wallet();
-        Wallet walletA = new Wallet();
-
-
-        Transaction genesisTransaction = Transaction.builder()
-                .from(coinbase.getPublicKey())
-                .to(walletA.getPublicKey())
-                .value(BigDecimal.TEN)
-                .inputs(new ArrayList<>())
-                .build();
-
-        TransactionOutput transactionOutput = TransactionOutput.builder()
-                .id("ido1")
-                .recipient(coinbase.getPublicKey())
-                .parentTransactionId(genesisTransaction.getTransactionId())
-                .value(BigDecimal.TEN)
-                .build();
-
-
-        genesisTransaction.generateSignature(coinbase.getPrivateKey());
-        genesisTransaction.getOutputs().add(transactionOutput);
-
-        if (Blockchain.UTXOs.isEmpty())
-            Blockchain.UTXOs.put(transactionOutput.getId(), transactionOutput);
-
-        return genesisTransaction;
-    }
 
     @Test
     public void shouldValidateCorrectBlockchain() {
@@ -117,7 +88,7 @@ public class BlockchainValidatorTest {
     }
 
     private void setUpBlockchainWithMining() {
-        final Transaction genesisTransaction = createGenesisTransaction();
+        final Transaction genesisTransaction = TestUtil.createGenesisTransaction();
 
         final Block block1 = Block.builder().previousHash("").build();
         block1.addTransaction(genesisTransaction);

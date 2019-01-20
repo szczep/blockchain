@@ -18,8 +18,7 @@ public class Block {
     @Getter
     private String previousHash;
 
-    public String merkleRoot;
-    public List<Transaction> transactions = new ArrayList<Transaction>(); //our data will be a simple message.
+    public List<Transaction> transactions = new ArrayList<Transaction>();
 
     private long timeStamp;
 
@@ -35,10 +34,10 @@ public class Block {
     public String calculateHash() {
 
         return DigitalSignature.applySha256(
-            previousHash +
-                Long.toString(timeStamp) +
-                Integer.toString(nonce) +
-                    merkleRoot
+                previousHash +
+                        Long.toString(timeStamp) +
+                        Integer.toString(nonce) +
+                        transactions.toString()
         );
     }
 
@@ -49,17 +48,14 @@ public class Block {
         }
     }
 
-
     public boolean addTransaction(Transaction transaction) {
-        if(transaction == null) return false;
-        if((!previousHash.equals("0"))) {
-            if((!transaction.processTransaction())) {
+        if ((!previousHash.equals("0"))) {
+            if ((!transaction.processTransaction())) {
                 System.out.println("Transaction failed to process. Discarded.");
                 return false;
             }
         }
         transactions.add(transaction);
-        merkleRoot = DigitalSignature.getMerkleRoot(transactions);
         hash = calculateHash();
 
         System.out.println("Transaction Successfully added to Block");

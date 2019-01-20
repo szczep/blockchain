@@ -15,21 +15,16 @@ import lombok.Singular;
 @Builder
 public class Blockchain implements Iterable<Block> {
 
+    public static final BigDecimal MIN_TRANSACTION = new BigDecimal("0.01");
 
     public static Map<String,TransactionOutput> UTXOs =
             new HashMap<String,TransactionOutput>();
-
-    public static BigDecimal minimumTransaction = new BigDecimal("0.01");
 
     @Getter
     private Transaction genesisTransaction;
 
     @Singular
     List<Block> blocks;
-
-    public String getLastHash() {
-        return blocks.size() > 0 ? blocks.get(blocks.size() - 1).getHash() : "";
-    }
 
     public int size() {
         return blocks.size();

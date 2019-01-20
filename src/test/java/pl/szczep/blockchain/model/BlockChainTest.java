@@ -20,7 +20,6 @@ public class BlockChainTest {
             .build();
 
         assertThat(blockchain.size()).isEqualTo(3);
-        assertThat(blockchain.getLastHash()).isEqualTo(block3.getHash());
         System.out.println(blockchain);
     }
 }

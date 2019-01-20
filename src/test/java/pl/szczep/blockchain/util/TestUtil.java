@@ -47,4 +47,35 @@ public class TestUtil {
         return transaction;
     }
 
+
+    public static Transaction createGenesisTransaction() {
+
+        Wallet coinbase = new Wallet();
+        Wallet walletA = new Wallet();
+
+
+        Transaction genesisTransaction = Transaction.builder()
+                .from(coinbase.getPublicKey())
+                .to(walletA.getPublicKey())
+                .value(BigDecimal.TEN)
+                .inputs(new ArrayList<>())
+                .build();
+
+        TransactionOutput transactionOutput = TransactionOutput.builder()
+                .id("ido1")
+                .recipient(coinbase.getPublicKey())
+                .parentTransactionId(genesisTransaction.getTransactionId())
+                .value(BigDecimal.TEN)
+                .build();
+
+
+        genesisTransaction.generateSignature(coinbase.getPrivateKey());
+        genesisTransaction.getOutputs().add(transactionOutput);
+
+        if (Blockchain.UTXOs.isEmpty())
+            Blockchain.UTXOs.put(transactionOutput.getId(), transactionOutput);
+
+        return genesisTransaction;
+    }
+
 }

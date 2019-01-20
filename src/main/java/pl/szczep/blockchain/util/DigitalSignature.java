@@ -6,6 +6,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,28 +52,9 @@ public class DigitalSignature {
             ecdsaVerify.initVerify(publicKey);
             ecdsaVerify.update(data.getBytes());
             return ecdsaVerify.verify(signature);
-        }catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static String getMerkleRoot(List<Transaction> transactions) {
-
-        int count = transactions.size();
-        List<String> previousTreeLayer = transactions.stream()
-                .map(Transaction::getTransactionId)
-                .collect(Collectors.toList());
-
-        List<String> treeLayer = previousTreeLayer;
-        while(count > 1) {
-            treeLayer = new ArrayList<>();
-            for(int i=1; i < previousTreeLayer.size(); i++) {
-                treeLayer.add(applySha256(previousTreeLayer.get(i-1) + previousTreeLayer.get(i)));
-            }
-            count = treeLayer.size();
-            previousTreeLayer = treeLayer;
-        }
-        return (treeLayer.size() == 1) ? treeLayer.get(0) : "";
     }
 
     private static String convertBytesToHexString(byte[] hash) {
