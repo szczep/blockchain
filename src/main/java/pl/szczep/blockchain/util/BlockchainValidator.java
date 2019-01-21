@@ -24,7 +24,7 @@ public class BlockchainValidator {
 
     public static boolean validate(Blockchain blockchain) {
 
-        String prevHash = "";
+        String prevHash = Block.GENESIS_BLOCK_PREV_HASH;
         for (Block block : blockchain) {
 
             if (isHashOfTheCurrentBlockInvalid(block) ||
@@ -33,7 +33,6 @@ public class BlockchainValidator {
                 return false;
             }
 
-
             TransactionOutput tempOutput;
             Map<String,TransactionOutput> tempUTXOs = new HashMap<>();
             tempUTXOs.put(blockchain.getGenesisTransaction().getOutputs().get(0).getId(),
@@ -41,7 +40,10 @@ public class BlockchainValidator {
 
             for(Transaction currentTransaction: block.transactions) {
 
-                if(!currentTransaction.verifiySignature()) {
+                if (currentTransaction.getTransactionId().equals("0"))
+                    continue;
+
+                if(!currentTransaction.verifySignature()) {
                     System.out.println("#Signature on Transaction is Invalid");
                     return false;
                 }

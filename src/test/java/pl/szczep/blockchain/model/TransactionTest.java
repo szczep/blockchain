@@ -36,7 +36,7 @@ public class TransactionTest {
 
         transaction.generateSignature(sender.getPrivateKey());
 
-        assertThat(transaction.verifiySignature()).isTrue();
+        assertThat(transaction.verifySignature()).isTrue();
     }
 
     @Test
@@ -49,10 +49,10 @@ public class TransactionTest {
 
         transaction.generateSignature(sender.getPrivateKey());
 
-        KeyPair otherRecipient = KeysHelper.generateKeyPair();
+        KeyPair maliciousRecipient = KeysHelper.generateKeyPair();
         FieldUtils.writeField(transaction, "recipient",
-                otherRecipient.getPublic(), true);
+                maliciousRecipient.getPublic(), true);
 
-        assertThat(transaction.verifiySignature()).isFalse();
+        assertThat(transaction.verifySignature()).isFalse();
     }
 }

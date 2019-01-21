@@ -1,5 +1,6 @@
 package pl.szczep.blockchain.util;
 
+import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
 import pl.szczep.blockchain.model.Transaction;
 import pl.szczep.blockchain.model.TransactionInput;
@@ -40,6 +41,7 @@ public class TestUtil {
                         Collections.singletonList(transactionInput)))
                 .build();
 
+        transaction.setTransactionId("tr1");
         transaction.generateSignature(sender.getPrivateKey());
 
         Blockchain.UTXOs.put(transactionInput.getTransactionOutputId(), transactionInput.getUTXO());

@@ -22,4 +22,5 @@ public class BlockChainTest {
         assertThat(blockchain.size()).isEqualTo(3);
         System.out.println(blockchain);
     }
+
 }

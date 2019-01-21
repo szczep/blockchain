@@ -13,12 +13,14 @@ import java.util.List;
 
 public class Block {
 
+    public static String GENESIS_BLOCK_PREV_HASH = "0";
+
     @Getter
     private String hash;
     @Getter
     private String previousHash;
 
-    public List<Transaction> transactions = new ArrayList<Transaction>();
+    public List<Transaction> transactions = new ArrayList<>();
 
     private long timeStamp;
 
@@ -34,10 +36,10 @@ public class Block {
     public String calculateHash() {
 
         return DigitalSignature.applySha256(
-                previousHash +
-                        Long.toString(timeStamp) +
-                        Integer.toString(nonce) +
-                        transactions.toString()
+            previousHash +
+                Long.toString(timeStamp) +
+                Integer.toString(nonce) +
+                transactions.toString()
         );
     }
 
@@ -49,7 +51,11 @@ public class Block {
     }
 
     public boolean addTransaction(Transaction transaction) {
-        if ((!previousHash.equals("0"))) {
+
+        if (transaction == null)
+            return false;
+
+        if ((!isGenesisBlock())) {
             if ((!transaction.processTransaction())) {
                 System.out.println("Transaction failed to process. Discarded.");
                 return false;
@@ -60,5 +66,9 @@ public class Block {
 
         System.out.println("Transaction Successfully added to Block");
         return true;
+    }
+
+    private boolean isGenesisBlock() {
+        return previousHash.equals(GENESIS_BLOCK_PREV_HASH);
     }
 }

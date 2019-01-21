@@ -1,6 +1,10 @@
 package pl.szczep.blockchain.util;
 
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
+import java.security.Security;
+
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -8,14 +12,6 @@ import org.junit.Test;
 import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
 import pl.szczep.blockchain.model.Transaction;
-import pl.szczep.blockchain.model.TransactionOutput;
-import pl.szczep.blockchain.personal.Wallet;
-
-import java.math.BigDecimal;
-import java.security.Security;
-import java.util.ArrayList;
-
-import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class BlockchainValidatorTest {
 
@@ -35,7 +31,7 @@ public class BlockchainValidatorTest {
         BlockchainValidator.setDifficulty(0);
 
         final Transaction genesisTransaction = TestUtil.createGenesisTransaction();
-        final Block block1 = Block.builder().previousHash("").build();
+        final Block block1 = Block.builder().previousHash(Block.GENESIS_BLOCK_PREV_HASH).build();
         block1.addTransaction(genesisTransaction);
         final Block block2 = Block.builder().previousHash(block1.getHash()).build();
         final Block block3 = Block.builder().previousHash(block2.getHash()).build();
@@ -90,7 +86,7 @@ public class BlockchainValidatorTest {
     private void setUpBlockchainWithMining() {
         final Transaction genesisTransaction = TestUtil.createGenesisTransaction();
 
-        final Block block1 = Block.builder().previousHash("").build();
+        final Block block1 = Block.builder().previousHash(Block.GENESIS_BLOCK_PREV_HASH).build();
         block1.addTransaction(genesisTransaction);
         block1.mineBlock();
         final Block block2 = Block.builder().previousHash(block1.getHash()).build();

@@ -14,13 +14,13 @@ import java.util.List;
 
 public class Transaction {
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private String transactionId;
     @Getter
     private PublicKey sender;
     @Getter
     private PublicKey recipient;
+    @Getter
     private BigDecimal value;
 
     @Getter
@@ -49,7 +49,7 @@ public class Transaction {
         signature = DigitalSignature.applyECDSASig(privateKey, data);
     }
 
-    public boolean verifiySignature() {
+    public boolean verifySignature() {
         String data = KeysHelper.getStringFromKey(sender) +
                 KeysHelper.getStringFromKey(recipient) + value.toString();
         return DigitalSignature.verifyECDSASig(sender, data, signature);
@@ -64,7 +64,6 @@ public class Transaction {
             i.setUTXO(Blockchain.UTXOs.get(i.getTransactionOutputId()));
         }
 
-        //check if transaction is valid:
         if (getInputsValue().compareTo(Blockchain.MIN_TRANSACTION) < 0) {
             System.out.println("#Transaction Inputs to small: " + getInputsValue());
             return false;
@@ -106,7 +105,7 @@ public class Transaction {
     }
 
     private boolean verifyIfTransactionHasValidSignature() {
-        if (!verifiySignature()) {
+        if (!verifySignature()) {
             System.out.println("#Transaction Signature failed to verify");
             return true;
         }
