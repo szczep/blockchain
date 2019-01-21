@@ -14,7 +14,11 @@ import java.util.List;
 
 public class Transaction {
 
-    @Getter @Setter
+    public static String GENESIS_TRANSACTION_HASH = "0";
+
+
+    @Getter
+    @Setter
     private String transactionId;
     @Getter
     private PublicKey sender;
@@ -44,45 +48,32 @@ public class Transaction {
     }
 
     public void generateSignature(PrivateKey privateKey) {
-        String data = KeysHelper.getStringFromKey(sender) +
-                KeysHelper.getStringFromKey(recipient) + value.toString();
-        signature = DigitalSignature.applyECDSASig(privateKey, data);
+        String transactionData = KeysHelper.getStringFromKey(sender) +
+            KeysHelper.getStringFromKey(recipient) + value.toString();
+        signature = DigitalSignature.applyECDSASig(privateKey, transactionData);
     }
 
     public boolean verifySignature() {
-        String data = KeysHelper.getStringFromKey(sender) +
-                KeysHelper.getStringFromKey(recipient) + value.toString();
-        return DigitalSignature.verifyECDSASig(sender, data, signature);
+        String transactionData = KeysHelper.getStringFromKey(sender) +
+            KeysHelper.getStringFromKey(recipient) + value.toString();
+        return DigitalSignature.verifyECDSASig(sender, transactionData, signature);
     }
-
 
     public boolean processTransaction() {
 
-        if (verifyIfTransactionHasValidSignature()) return false;
+        if (verifyIfTransactionHasValidSignature()) { return false; }
 
         for (TransactionInput i : inputs) {
-            i.setUTXO(Blockchain.UTXOs.get(i.getTransactionOutputId()));
-        }
-
-        if (getInputsValue().compareTo(Blockchain.MIN_TRANSACTION) < 0) {
-            System.out.println("#Transaction Inputs to small: " + getInputsValue());
-            return false;
+            i.setUTXO(Blockchain.getUTXO(i.getTransactionOutputId()));
         }
 
         BigDecimal leftOver = getInputsValue().subtract(value);
-        transactionId = calulateHash();
+        transactionId = calculateHash();
         outputs.add(new TransactionOutput(this.recipient, value, transactionId));
         outputs.add(new TransactionOutput(this.sender, leftOver, transactionId));
 
-
-        for (TransactionOutput o : outputs) {
-            Blockchain.UTXOs.put(o.getId(), o);
-        }
-
-        for (TransactionInput i : inputs) {
-            if (i.getUTXO() == null) continue;
-            Blockchain.UTXOs.remove(i.getUTXO().getId());
-        }
+        outputs.forEach(Blockchain::addUTXO);
+        inputs.forEach(inT -> Blockchain.removeUTXO(inT.getUTXO().getId()));
 
         return true;
     }
@@ -90,7 +81,7 @@ public class Transaction {
     public BigDecimal getInputsValue() {
         BigDecimal total = BigDecimal.ZERO;
         for (TransactionInput i : inputs) {
-            if (i.getUTXO() == null) continue;
+            if (i.getUTXO() == null) { continue; }
             total = total.add(i.getUTXO().getValue());
         }
         return total;
@@ -112,12 +103,12 @@ public class Transaction {
         return false;
     }
 
-    private String calulateHash() {
+    private String calculateHash() {
         sequence++;
         return DigitalSignature.applySha256(
-                KeysHelper.getStringFromKey(sender) +
-                        KeysHelper.getStringFromKey(recipient) +
-                        value.toString() + sequence
+            KeysHelper.getStringFromKey(sender) +
+                KeysHelper.getStringFromKey(recipient) +
+                value.toString() + sequence
         );
     }
 }

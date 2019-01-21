@@ -1,7 +1,6 @@
 package pl.szczep.blockchain.model;
 
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,14 +16,21 @@ import lombok.Singular;
 @Builder
 public class Blockchain implements Iterable<Block> {
 
-    public static final BigDecimal MIN_TRANSACTION = new BigDecimal("0.01");
-
     public static Map<String, TransactionOutput> UTXOs =
         new HashMap<String, TransactionOutput>();
 
-    public static void addNewTransaction(TransactionOutput transactionOutput) {
+    public static void addUTXO(TransactionOutput transactionOutput) {
         UTXOs.put(transactionOutput.getId(), transactionOutput);
     }
+
+    public static TransactionOutput getUTXO(String transactionOutputId) {
+        return UTXOs.get(transactionOutputId);
+    }
+
+    public static TransactionOutput removeUTXO(String transactionOutputId) {
+        return UTXOs.remove(transactionOutputId);
+    }
+
 
     @Getter
     @Setter

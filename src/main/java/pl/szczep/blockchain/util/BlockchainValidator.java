@@ -40,8 +40,11 @@ public class BlockchainValidator {
 
             for(Transaction currentTransaction: block.transactions) {
 
-                if (currentTransaction.getTransactionId().equals("0"))
+                if (currentTransaction.getTransactionId().equals(Transaction.GENESIS_TRANSACTION_HASH))
                     continue;
+
+
+
 
                 if(!currentTransaction.verifySignature()) {
                     System.out.println("#Signature on Transaction is Invalid");

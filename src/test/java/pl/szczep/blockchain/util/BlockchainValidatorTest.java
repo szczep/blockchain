@@ -12,6 +12,7 @@ import org.junit.Test;
 import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
 import pl.szczep.blockchain.model.Transaction;
+import pl.szczep.blockchain.personal.Wallet;
 
 public class BlockchainValidatorTest {
 
@@ -28,9 +29,10 @@ public class BlockchainValidatorTest {
 
     @Before
     public void setUpBlockchain() {
+        Wallet wallet = new Wallet();
         BlockchainValidator.setDifficulty(0);
 
-        final Transaction genesisTransaction = TestUtil.createGenesisTransaction();
+        final Transaction genesisTransaction = TestUtil.createGenesisTransaction(wallet);
         final Block block1 = Block.builder().previousHash(Block.GENESIS_BLOCK_PREV_HASH).build();
         block1.addTransaction(genesisTransaction);
         final Block block2 = Block.builder().previousHash(block1.getHash()).build();
@@ -84,7 +86,9 @@ public class BlockchainValidatorTest {
     }
 
     private void setUpBlockchainWithMining() {
-        final Transaction genesisTransaction = TestUtil.createGenesisTransaction();
+        Wallet wallet = new Wallet();
+
+        final Transaction genesisTransaction = TestUtil.createGenesisTransaction(wallet);
 
         final Block block1 = Block.builder().previousHash(Block.GENESIS_BLOCK_PREV_HASH).build();
         block1.addTransaction(genesisTransaction);

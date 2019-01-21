@@ -50,34 +50,30 @@ public class TestUtil {
     }
 
 
-    public static Transaction createGenesisTransaction() {
-
+    public static Transaction createGenesisTransaction(Wallet walletA) {
         Wallet coinbase = new Wallet();
-        Wallet walletA = new Wallet();
 
-
+        //create genesis transaction, which sends 100 NoobCoin to walletA:
         Transaction genesisTransaction = Transaction.builder()
-                .from(coinbase.getPublicKey())
-                .to(walletA.getPublicKey())
-                .value(BigDecimal.TEN)
-                .inputs(new ArrayList<>())
-                .build();
-
-        genesisTransaction.setTransactionId("0");
-
-        TransactionOutput transactionOutput = TransactionOutput.builder()
-                .id("ido1")
-                .recipient(coinbase.getPublicKey())
-                .parentTransactionId(genesisTransaction.getTransactionId())
-                .value(BigDecimal.TEN)
-                .build();
-
-
+            .from(coinbase.getPublicKey())
+            .to(walletA.getPublicKey())
+            .value(new BigDecimal(100))
+            .inputs(new ArrayList<>())
+            .build();
         genesisTransaction.generateSignature(coinbase.getPrivateKey());
+        genesisTransaction.setTransactionId(Transaction.GENESIS_TRANSACTION_HASH);
+
+
+        final TransactionOutput transactionOutput = TransactionOutput.builder()
+            .recipient(genesisTransaction.getRecipient())
+            .value(genesisTransaction.getValue())
+            .parentTransactionId(genesisTransaction.getTransactionId())
+            .build();
+
         genesisTransaction.getOutputs().add(transactionOutput);
 
         if (Blockchain.UTXOs.isEmpty())
-            Blockchain.UTXOs.put(transactionOutput.getId(), transactionOutput);
+            Blockchain.addUTXO(transactionOutput);
 
         return genesisTransaction;
     }
