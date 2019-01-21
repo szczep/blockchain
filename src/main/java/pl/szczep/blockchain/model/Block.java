@@ -52,11 +52,10 @@ public class Block {
 
     public boolean addTransaction(Transaction transaction) {
 
-        if (transaction == null)
-            return false;
+        if (transaction == null) { return false; }
 
-        if ((!isGenesisBlock())) {
-            if ((!transaction.processTransaction())) {
+        if (!isGenesisBlock()) {
+            if (!transaction.processTransaction()) {
                 System.out.println("Transaction failed to process. Discarded.");
                 return false;
             }

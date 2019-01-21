@@ -44,8 +44,6 @@ public class BlockchainValidator {
                     continue;
 
 
-
-
                 if(!currentTransaction.verifySignature()) {
                     System.out.println("#Signature on Transaction is Invalid");
                     return false;
@@ -84,9 +82,7 @@ public class BlockchainValidator {
                     System.out.println("#Transaction output 'change' is not sender.");
                     return false;
                 }
-
             }
-
 
             prevHash = block.getHash();
         }
@@ -106,5 +102,4 @@ public class BlockchainValidator {
     public static Boolean isHashNotCompilantToDifficultyPolicy(Block block) {
         return !block.getHash().substring(0, DIFFICULTY).equals(DIFFICULTY_PREFIX);
     }
-
 }

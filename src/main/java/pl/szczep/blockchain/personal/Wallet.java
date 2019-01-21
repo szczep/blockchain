@@ -1,14 +1,5 @@
 package pl.szczep.blockchain.personal;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import pl.szczep.blockchain.model.Blockchain;
-import pl.szczep.blockchain.model.Transaction;
-import pl.szczep.blockchain.model.TransactionInput;
-import pl.szczep.blockchain.model.TransactionOutput;
-import pl.szczep.blockchain.util.KeysHelper;
-
 import java.math.BigDecimal;
 import java.security.KeyPair;
 import java.security.PrivateKey;
@@ -17,6 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import lombok.Getter;
+import pl.szczep.blockchain.model.Blockchain;
+import pl.szczep.blockchain.model.Transaction;
+import pl.szczep.blockchain.model.TransactionInput;
+import pl.szczep.blockchain.model.TransactionOutput;
+import pl.szczep.blockchain.util.KeysHelper;
 
 @Getter
 public class Wallet {

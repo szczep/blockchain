@@ -11,7 +11,6 @@ import org.junit.Test;
 import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
 import pl.szczep.blockchain.model.Transaction;
-import pl.szczep.blockchain.model.TransactionOutput;
 import pl.szczep.blockchain.util.BlockchainValidator;
 import pl.szczep.blockchain.util.TestUtil;
 

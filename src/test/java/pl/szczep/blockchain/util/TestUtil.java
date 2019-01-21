@@ -1,15 +1,14 @@
 package pl.szczep.blockchain.util;
 
-import pl.szczep.blockchain.model.Block;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import pl.szczep.blockchain.model.Blockchain;
 import pl.szczep.blockchain.model.Transaction;
 import pl.szczep.blockchain.model.TransactionInput;
 import pl.szczep.blockchain.model.TransactionOutput;
 import pl.szczep.blockchain.personal.Wallet;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class TestUtil {
 
@@ -53,7 +52,6 @@ public class TestUtil {
     public static Transaction createGenesisTransaction(Wallet walletA) {
         Wallet coinbase = new Wallet();
 
-        //create genesis transaction, which sends 100 NoobCoin to walletA:
         Transaction genesisTransaction = Transaction.builder()
             .from(coinbase.getPublicKey())
             .to(walletA.getPublicKey())
@@ -77,5 +75,4 @@ public class TestUtil {
 
         return genesisTransaction;
     }
-
 }
