@@ -21,7 +21,6 @@ public class TransactionOutput {
     private BigDecimal value;
     private String parentTransactionId;
 
-    @Builder
     public TransactionOutput(PublicKey recipient,
                              BigDecimal value,
                              String parentTransactionId) {

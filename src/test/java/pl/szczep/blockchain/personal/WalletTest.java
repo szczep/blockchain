@@ -70,7 +70,7 @@ public class WalletTest {
 
         assertThat(walletA.getBalance()).isEqualTo(new BigDecimal(80));
         assertThat(walletB.getBalance()).isEqualTo(new BigDecimal(20));
-        
+
         assertThat(BlockchainValidator.validate(blockchain)).isTrue();
     }
 }
