@@ -54,8 +54,7 @@ public class Wallet {
         List<TransactionInput> inputs = new ArrayList<>();
 
         BigDecimal total = BigDecimal.ZERO;
-        for (Map.Entry<String, TransactionOutput> item : UTXOs.entrySet()) {
-            TransactionOutput UTXO = item.getValue();
+        for (TransactionOutput UTXO: UTXOs.values()) {
             total = total.add(UTXO.getValue());
             inputs.add(TransactionInput.builder().transactionOutputId(UTXO.getId()).build());
             if (total.compareTo(value) > 0) break;
