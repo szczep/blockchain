@@ -26,7 +26,7 @@ public class BlockchainValidator {
         for (Block block : blockchain) {
 
             if (isHashOfTheCurrentBlockInvalid(block) || isHashOfThePreviousBlockInvalid(block, prevHash) ||
-                isHashNotCompilantToDifficultyPolicy(block)) {
+                    isHashNotCompilantToDifficultyPolicy(block)) {
                 return false;
             }
             prevHash = block.getHash();
@@ -36,16 +36,18 @@ public class BlockchainValidator {
     }
 
     private static boolean isHashOfThePreviousBlockInvalid(Block block, String previousHash) {
+        System.out.println("The hash of the previous block is invalid.");
         return !block.getPreviousHash().equals(previousHash);
 
     }
 
     private static boolean isHashOfTheCurrentBlockInvalid(Block block) {
+        System.out.println("The hash of the block is invalid.");
         return !block.getHash().equals(block.calculateHash());
     }
 
     public static Boolean isHashNotCompilantToDifficultyPolicy(Block block) {
+        System.out.println("The block was not mined");
         return !block.getHash().substring(0, DIFFICULTY).equals(DIFFICULTY_PREFIX);
     }
-
 }

@@ -2,7 +2,10 @@ package pl.szczep.blockchain.model;
 
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.google.gson.GsonBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,26 +19,32 @@ public class Block {
     private String hash;
     @Getter
     private String previousHash;
-    @Getter @Setter
-    private String data;
+    @Getter
+    @Setter
+    public String metaData;
+    @Getter
+    @Setter
+    public List<Transaction> transactions = new ArrayList<>();
     private long timeStamp;
 
     private int nonce;
 
     @Builder
-    public Block(String data, String previousHash) {
-        this.data = data;
+    public Block(String metaData, String previousHash, List<Transaction> transactions) {
+        this.transactions = transactions;
         this.previousHash = previousHash;
         this.timeStamp = Instant.now().toEpochMilli();
+        this.metaData = metaData;
         this.hash = calculateHash();
     }
 
     public String calculateHash() {
         return DigitalSignature.applySha256(
-            previousHash +
-                Long.toString(timeStamp) +
-                Integer.toString(nonce) +
-                data
+                previousHash +
+                        Long.toString(timeStamp) +
+                        Integer.toString(nonce) +
+                        metaData +
+                        transactions
         );
     }
 
@@ -44,5 +53,10 @@ public class Block {
             nonce++;
             hash = calculateHash();
         }
+    }
+
+    @Override
+    public String toString() {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 }
