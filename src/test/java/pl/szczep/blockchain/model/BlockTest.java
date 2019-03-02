@@ -4,29 +4,11 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Test;
 import pl.szczep.blockchain.util.BlockchainValidator;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class BlockTest {
 
-    @Test
-    public void shouldChangeHashForDifferentTimeCreations() throws InterruptedException {
-
-        final Block block1 = Block.builder()
-                .metaData("Block1")
-                .previousHash(Block.GENESIS_BLOCK_PREV_HASH)
-                .build();
-        TimeUnit.SECONDS.sleep(1);
-
-        final Block block2 = Block.builder()
-                .metaData("Block2")
-                .previousHash(Block.GENESIS_BLOCK_PREV_HASH)
-                .build();
-
-        assertThat(block1.getHash()).isNotEqualTo(block2.getHash());
-    }
 
     @Test
     public void shouldChangeHashWhenDataChanged() throws IllegalAccessException {

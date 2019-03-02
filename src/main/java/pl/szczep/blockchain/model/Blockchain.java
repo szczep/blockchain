@@ -14,6 +14,10 @@ public class Blockchain implements Iterable<Block> {
     @Singular
     List<Block> blocks;
 
+    public Block getBlock(int number) {
+        return blocks.get(number);
+    }
+
     public String getLastHash() {
         return blocks.size() > 0 ? blocks.get(blocks.size() - 1).getHash() : "";
     }

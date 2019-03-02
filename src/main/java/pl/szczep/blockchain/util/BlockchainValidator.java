@@ -22,7 +22,7 @@ public class BlockchainValidator {
 
     public static boolean validate(Blockchain blockchain) {
 
-        String prevHash = "";
+        String prevHash = Block.GENESIS_HASH;
         for (Block block : blockchain) {
 
             if (isHashOfTheCurrentBlockInvalid(block) || isHashOfThePreviousBlockInvalid(block, prevHash) ||

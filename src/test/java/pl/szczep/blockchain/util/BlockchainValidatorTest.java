@@ -17,7 +17,7 @@ public class BlockchainValidatorTest {
     public void setUpBlockchain(){
         BlockchainValidator.setDifficulty(0);
 
-        final Block block1 = Block.builder().metaData("Block #1").previousHash("").build();
+        final Block block1 = Block.builder().metaData("Block #1").previousHash(Block.GENESIS_HASH).build();
         final Block block2 = Block.builder().metaData("Block #2").previousHash(block1.getHash()).build();
         final Block block3 = Block.builder().metaData("Block #3").previousHash(block2.getHash()).build();
 
@@ -70,7 +70,7 @@ public class BlockchainValidatorTest {
     }
 
     private void setUpBlockchainWithMining() {
-        final Block block1 = Block.builder().metaData("Block #1").previousHash("").build();
+        final Block block1 = Block.builder().metaData("Block #1").previousHash(Block.GENESIS_HASH).build();
         block1.mineBlock();
         final Block block2 = Block.builder().metaData("Block #2").previousHash(block1.getHash()).build();
         block2.mineBlock();

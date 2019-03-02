@@ -7,14 +7,13 @@ import lombok.Getter;
 import pl.szczep.blockchain.util.BlockchainValidator;
 import pl.szczep.blockchain.util.DigitalSignature;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Block {
 
-    public static String GENESIS_BLOCK_PREV_HASH = "0";
+    public static String GENESIS_HASH = "0";
 
     @Getter
     private String previousHash;
@@ -27,7 +26,6 @@ public class Block {
 
     @Getter
     private String hash;
-    private long timeStamp;
 
     private int nonce;
 
@@ -36,18 +34,15 @@ public class Block {
         this.transactions = transactions;
         this.previousHash = previousHash;
         this.metaData = metaData;
-        this.timeStamp = Instant.now().toEpochMilli();
         this.hash = calculateHash();
     }
 
     public String calculateHash() {
         return DigitalSignature.applySha256(
                 previousHash +
-                        Long.toString(timeStamp) +
                         Integer.toString(nonce) +
                         metaData +
-                        transactions
-        );
+                        transactions);
     }
 
     public void mineBlock() {
