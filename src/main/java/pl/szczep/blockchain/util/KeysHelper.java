@@ -14,13 +14,15 @@ public class KeysHelper {
 
     public static final String KEYS_ALGORITHM = "ECDSA";
     public static final String KEYS_ALGORITHM_PROV = "BC";
+    public static final String RANDOM_NUMBER_ALG = "SHA1PRNG";
+    public static final String EC_PARAMS = "prime192v1";
 
 
     public static KeyPair generateKeyPair() {
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance(KEYS_ALGORITHM, KEYS_ALGORITHM_PROV);
-            SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-            ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1");
+            SecureRandom random = SecureRandom.getInstance(RANDOM_NUMBER_ALG);
+            ECGenParameterSpec ecSpec = new ECGenParameterSpec(EC_PARAMS);
             keyGen.initialize(ecSpec, random);
 
             return keyGen.generateKeyPair();
