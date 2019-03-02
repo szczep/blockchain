@@ -3,11 +3,17 @@ package pl.szczep.blockchain.util;
 
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
+import org.apache.log4j.Logger;
 import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
+import pl.szczep.blockchain.model.Transaction;
+
+import java.util.List;
 
 @UtilityClass
 public class BlockchainValidator {
+
+    Logger logger = Logger.getLogger(BlockchainValidator.class);
 
     @Getter
     private static int DIFFICULTY = 0;
@@ -25,8 +31,10 @@ public class BlockchainValidator {
         String prevHash = Block.GENESIS_HASH;
         for (Block block : blockchain) {
 
-            if (isHashOfTheCurrentBlockInvalid(block) || isHashOfThePreviousBlockInvalid(block, prevHash) ||
-                    isHashNotCompilantToDifficultyPolicy(block)) {
+            if (isHashOfTheCurrentBlockInvalid(block) ||
+                    isHashOfThePreviousBlockInvalid(block, prevHash) ||
+                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block) ||
+                    isAnyTransactionInvalid(block.getTransactions())) {
                 return false;
             }
             prevHash = block.getHash();
@@ -35,22 +43,38 @@ public class BlockchainValidator {
         return true;
     }
 
+    private static boolean isAnyTransactionInvalid(List<Transaction> transactions) {
+        for (Transaction transaction: transactions) {
+            if (!transaction.verifySignature()) {
+                logger.warn("The transaction is invalid");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static Boolean isHashNotCompilantToDifficultyPolicy(Block block) {
+        return !block.getHash().substring(0, DIFFICULTY).equals(DIFFICULTY_PREFIX);
+    }
+
     private static boolean isHashOfThePreviousBlockInvalid(Block block, String previousHash) {
         final boolean isInValid = !block.getPreviousHash().equals(previousHash);
-        if (isInValid) System.out.println("The hash of the previous block is invalid.");
+        if (isInValid) logger.warn("The hash of the previous block is invalid.");
         return isInValid;
 
     }
 
     private static boolean isHashOfTheCurrentBlockInvalid(Block block) {
         final boolean isInValid = !block.getHash().equals(block.calculateHash());
-        if (isInValid) System.out.println("The hash of the block is invalid.");
+        if (isInValid) logger.warn("The hash of the block is invalid.");
         return isInValid;
     }
 
-    public static Boolean isHashNotCompilantToDifficultyPolicy(Block block) {
-        final boolean isInValid = !block.getHash().substring(0, DIFFICULTY).equals(DIFFICULTY_PREFIX);
-        if (isInValid) System.out.println("The block was not mined");
+
+    private static Boolean isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(Block block) {
+        final boolean isInValid = isHashNotCompilantToDifficultyPolicy(block);
+        if (isInValid) logger.warn("The block was not mined");
         return isInValid;
     }
 }

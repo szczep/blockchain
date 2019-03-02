@@ -4,10 +4,17 @@ package pl.szczep.blockchain.util;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 import pl.szczep.blockchain.model.Block;
 import pl.szczep.blockchain.model.Blockchain;
+import pl.szczep.blockchain.model.Transaction;
+import pl.szczep.blockchain.model.Wallet;
+
+import java.math.BigDecimal;
+import java.security.Security;
+import java.util.Collections;
 
 public class BlockchainValidatorTest {
 
@@ -15,6 +22,9 @@ public class BlockchainValidatorTest {
 
     @Before
     public void setUpBlockchain(){
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        BasicConfigurator.configure();
+
         BlockchainValidator.setDifficulty(0);
 
         final Block block1 = Block.builder().metaData("Block #1").previousHash(Block.GENESIS_HASH).build();
@@ -66,6 +76,31 @@ public class BlockchainValidatorTest {
     public void shouldValidateInCorrectBlockchainWithoutMining() {
         BlockchainValidator.setDifficulty(3);
 
+        assertThat(BlockchainValidator.validate(blockchain)).isFalse();
+    }
+
+
+    @Test
+    public void shouldInvalidBlockchainWithInvalidTransaction() throws IllegalAccessException {
+        BlockchainValidator.setDifficulty(3);
+        setUpBlockchainWithMining();
+        assertThat(BlockchainValidator.validate(blockchain)).isTrue();
+
+        Block block = blockchain.getBlock(2);
+        Wallet personA = new Wallet();
+        Wallet personB = new Wallet();
+        Transaction tr = Transaction.builder()
+                .from(personA.getPublicKey())
+                .to(personB.getPublicKey())
+                .value(new BigDecimal("10"))
+                .build();
+        tr.generateSignature(personB.getPrivateKey());
+
+        FieldUtils.writeField(block, "transactions",
+                Collections.singletonList(tr), true);
+
+        assertThat(BlockchainValidator.validate(blockchain)).isFalse();
+        block.mineFromStart();
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();
     }
 

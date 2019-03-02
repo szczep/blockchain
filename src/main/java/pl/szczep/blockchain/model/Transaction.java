@@ -3,18 +3,15 @@ package pl.szczep.blockchain.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import pl.szczep.blockchain.util.DigitalSignature;
 import pl.szczep.blockchain.util.KeysHelper;
 
 import java.math.BigDecimal;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.Arrays;
 
 public class Transaction {
-
-    public static String GENESIS_TRANSACTION_HASH = "0";
-
 
     @Getter
     private PublicKey sender;
@@ -25,8 +22,6 @@ public class Transaction {
 
 
     private byte[] signature;
-
-    private static long sequence = 0;
 
     @Builder
     private Transaction(PublicKey from,
@@ -49,13 +44,12 @@ public class Transaction {
         return DigitalSignature.verifyECDSASig(sender, transactionData, signature);
     }
 
-
-    private String calculateHash() {
-        sequence++;
-        return DigitalSignature.applySha256(
-                KeysHelper.getStringFromKey(sender) +
-                        KeysHelper.getStringFromKey(recipient) +
-                        value.toString() + sequence
-        );
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "sender=" + sender +
+                ", recipient=" + recipient +
+                ", value=" + value +
+                '}';
     }
 }

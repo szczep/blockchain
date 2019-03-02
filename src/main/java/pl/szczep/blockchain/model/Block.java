@@ -22,7 +22,7 @@ public class Block {
     private String metaData;
 
     @Getter
-    private List<Transaction> transactions = new ArrayList<>();
+    private List<Transaction> transactions;
 
     @Getter
     private String hash;
@@ -31,7 +31,11 @@ public class Block {
 
     @Builder
     public Block(String previousHash, String metaData, List<Transaction> transactions) {
+
         this.transactions = transactions;
+        if (this.transactions == null)
+            this.transactions = new ArrayList<>();
+
         this.previousHash = previousHash;
         this.metaData = metaData;
         this.hash = calculateHash();
@@ -46,6 +50,16 @@ public class Block {
     }
 
     public void mineBlock() {
+        while (BlockchainValidator.isHashNotCompilantToDifficultyPolicy(this)) {
+            nonce++;
+            hash = calculateHash();
+        }
+    }
+
+    public void mineFromStart() {
+        nonce = 0;
+        hash = calculateHash();
+
         while (BlockchainValidator.isHashNotCompilantToDifficultyPolicy(this)) {
             nonce++;
             hash = calculateHash();
