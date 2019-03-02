@@ -34,9 +34,11 @@ public class BlockchainValidatorTest {
     }
 
     @Test
-    public void shouldDetectBlockchainDataManipulation() {
+    public void shouldDetectBlockchainDataManipulation() throws IllegalAccessException {
         final Block block = blockchain.iterator().next();
-        block.setMetaData("Manipulate data");
+
+        FieldUtils.writeField(block, "metaData",
+                "Manipulate data", true);
 
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();
     }
@@ -44,7 +46,9 @@ public class BlockchainValidatorTest {
     @Test
     public void shouldDetectBlockchainDataManipulationWithHashTrick() throws IllegalAccessException {
         final Block block = blockchain.iterator().next();
-        block.setMetaData("Manipulate data");
+
+        FieldUtils.writeField(block, "metaData", "Manipulate data", true);
+
         FieldUtils.writeField(block, "hash", block.calculateHash(), true);
 
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();

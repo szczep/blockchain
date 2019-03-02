@@ -1,10 +1,11 @@
 package pl.szczep.blockchain.model;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 import org.junit.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class BlockChainTest {
+
 
     @Test
     public void shouldContainThreeBlocks() {

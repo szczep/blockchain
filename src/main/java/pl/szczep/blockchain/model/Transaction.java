@@ -17,9 +17,6 @@ public class Transaction {
 
 
     @Getter
-    @Setter
-    private String transactionId;
-    @Getter
     private PublicKey sender;
     @Getter
     private PublicKey recipient;

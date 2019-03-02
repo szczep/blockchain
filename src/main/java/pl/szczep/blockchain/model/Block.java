@@ -1,40 +1,42 @@
 package pl.szczep.blockchain.model;
 
 
+import com.google.gson.GsonBuilder;
+import lombok.Builder;
+import lombok.Getter;
+import pl.szczep.blockchain.util.BlockchainValidator;
+import pl.szczep.blockchain.util.DigitalSignature;
+
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.GsonBuilder;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import pl.szczep.blockchain.util.BlockchainValidator;
-import pl.szczep.blockchain.util.DigitalSignature;
-
 
 public class Block {
 
-    @Getter
-    private String hash;
+    public static String GENESIS_BLOCK_PREV_HASH = "0";
+
     @Getter
     private String previousHash;
+
     @Getter
-    @Setter
-    public String metaData;
+    private String metaData;
+
     @Getter
-    @Setter
-    public List<Transaction> transactions = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
+
+    @Getter
+    private String hash;
     private long timeStamp;
 
     private int nonce;
 
     @Builder
-    public Block(String metaData, String previousHash, List<Transaction> transactions) {
+    public Block(String previousHash, String metaData, List<Transaction> transactions) {
         this.transactions = transactions;
         this.previousHash = previousHash;
-        this.timeStamp = Instant.now().toEpochMilli();
         this.metaData = metaData;
+        this.timeStamp = Instant.now().toEpochMilli();
         this.hash = calculateHash();
     }
 
