@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Block {
 
-    Logger logger = Logger.getLogger(Block.class);
+    private static final Logger LOG = Logger.getLogger(Block.class);
 
 
     public static String GENESIS_HASH = "0";
@@ -58,7 +58,7 @@ public class Block {
             nonce++;
             hash = calculateHash();
         }
-        logger.info("Block mined with nonce value " + nonce);
+        LOG.info("Block mined with nonce value " + nonce);
     }
 
 

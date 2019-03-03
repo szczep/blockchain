@@ -13,7 +13,7 @@ import java.util.List;
 @UtilityClass
 public class BlockchainValidator {
 
-    Logger logger = Logger.getLogger(BlockchainValidator.class);
+    private static final Logger LOG = Logger.getLogger(BlockchainValidator.class);
 
     @Getter
     private static int DIFFICULTY = 0;
@@ -46,7 +46,7 @@ public class BlockchainValidator {
     private static boolean isAnyTransactionInvalid(List<Transaction> transactions) {
         for (Transaction transaction : transactions) {
             if (!transaction.verifySignature()) {
-                logger.warn("The transaction is invalid");
+                LOG.warn("The transaction is invalid");
                 return true;
             }
         }
@@ -60,21 +60,21 @@ public class BlockchainValidator {
 
     private static boolean isHashOfThePreviousBlockInvalid(Block block, String previousHash) {
         final boolean isInValid = !block.getPreviousHash().equals(previousHash);
-        if (isInValid) logger.warn("The hash of the previous block is invalid.");
+        if (isInValid) LOG.warn("The hash of the previous block is invalid.");
         return isInValid;
 
     }
 
     private static boolean isHashOfTheCurrentBlockInvalid(Block block) {
         final boolean isInValid = !block.getHash().equals(block.calculateHash());
-        if (isInValid) logger.warn("The hash of the block is invalid.");
+        if (isInValid) LOG.warn("The hash of the block is invalid.");
         return isInValid;
     }
 
 
     private static Boolean isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(Block block) {
         final boolean isInValid = isHashNotCompilantToDifficultyPolicy(block);
-        if (isInValid) logger.warn("The block was not mined");
+        if (isInValid) LOG.warn("The block was not mined");
         return isInValid;
     }
 }
