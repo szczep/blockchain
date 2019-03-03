@@ -4,6 +4,7 @@ package pl.szczep.blockchain.model;
 import com.google.gson.GsonBuilder;
 import lombok.Builder;
 import lombok.Getter;
+import org.apache.log4j.Logger;
 import pl.szczep.blockchain.util.BlockchainValidator;
 import pl.szczep.blockchain.util.DigitalSignature;
 
@@ -12,6 +13,9 @@ import java.util.List;
 
 
 public class Block {
+
+    Logger logger = Logger.getLogger(Block.class);
+
 
     public static String GENESIS_HASH = "0";
 
@@ -54,17 +58,9 @@ public class Block {
             nonce++;
             hash = calculateHash();
         }
+        logger.info("Block mined with nonce value " + nonce);
     }
 
-    public void mineFromStart() {
-        nonce = 0;
-        hash = calculateHash();
-
-        while (BlockchainValidator.isHashNotCompilantToDifficultyPolicy(this)) {
-            nonce++;
-            hash = calculateHash();
-        }
-    }
 
     @Override
     public String toString() {

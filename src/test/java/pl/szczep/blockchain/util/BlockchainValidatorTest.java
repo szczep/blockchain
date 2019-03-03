@@ -1,8 +1,6 @@
 package pl.szczep.blockchain.util;
 
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
-
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.junit.Before;
@@ -13,8 +11,9 @@ import pl.szczep.blockchain.model.Transaction;
 import pl.szczep.blockchain.model.Wallet;
 
 import java.math.BigDecimal;
-import java.security.Security;
 import java.util.Collections;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class BlockchainValidatorTest {
 
@@ -22,7 +21,6 @@ public class BlockchainValidatorTest {
 
     @Before
     public void setUpBlockchain(){
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         BasicConfigurator.configure();
 
         BlockchainValidator.setDifficulty(0);
@@ -44,46 +42,27 @@ public class BlockchainValidatorTest {
     }
 
     @Test
-    public void shouldDetectBlockchainDataManipulation() throws IllegalAccessException {
+    public void shouldDetectBlockchainDataManipulation() {
         final Block block = blockchain.iterator().next();
 
-        FieldUtils.writeField(block, "metaData",
-                "Manipulate data", true);
+        changeField(block, "metaData", "Manipulate data");
 
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();
     }
 
     @Test
-    public void shouldDetectBlockchainDataManipulationWithHashTrick() throws IllegalAccessException {
+    public void shouldDetectBlockchainDataManipulationWithHashTrick() {
         final Block block = blockchain.iterator().next();
 
-        FieldUtils.writeField(block, "metaData", "Manipulate data", true);
+        changeField(block, "metaData", "Manipulate data");
 
-        FieldUtils.writeField(block, "hash", block.calculateHash(), true);
-
-        assertThat(BlockchainValidator.validate(blockchain)).isFalse();
-    }
-
-    @Test
-    public void shouldValidateCorrectBlockchainWithDifficulty() {
-        BlockchainValidator.setDifficulty(3);
-        setUpBlockchainWithMining();
-
-        assertThat(BlockchainValidator.validate(blockchain)).isTrue();
-    }
-
-    @Test
-    public void shouldValidateInCorrectBlockchainWithoutMining() {
-        BlockchainValidator.setDifficulty(3);
+        changeField(block, "hash", block.calculateHash());
 
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();
     }
 
-
     @Test
-    public void shouldInvalidBlockchainWithInvalidTransaction() throws IllegalAccessException {
-        BlockchainValidator.setDifficulty(3);
-        setUpBlockchainWithMining();
+    public void shouldInvalidBlockchainWithInvalidTransaction() {
         assertThat(BlockchainValidator.validate(blockchain)).isTrue();
 
         Block block = blockchain.getBlock(2);
@@ -96,12 +75,62 @@ public class BlockchainValidatorTest {
                 .build();
         tr.generateSignature(personB.getPrivateKey());
 
-        FieldUtils.writeField(block, "transactions",
-                Collections.singletonList(tr), true);
+        changeField(block, "transactions", Collections.singletonList(tr));
 
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();
-        block.mineFromStart();
+        changeField(block, "hash", block.calculateHash());
+
         assertThat(BlockchainValidator.validate(blockchain)).isFalse();
+    }
+
+    @Test
+    public void shouldNotDetectBlockManipulationWhenAllHashesFixed() {
+        final Block block = blockchain.getBlock(1);
+        final Block block2 = blockchain.getBlock(2);
+
+        changeField(block, "metaData", "Manipulate data");
+        changeField(block, "hash", block.calculateHash());
+
+        changeField(block2, "previousHash", block.getHash());
+        changeField(block2, "hash", block2.calculateHash());
+
+        assertThat(BlockchainValidator.validate(blockchain)).isTrue();
+    }
+
+    @Test
+    public void shouldValidateInCorrectBlockchainWithoutMining() {
+        BlockchainValidator.setDifficulty(3);
+
+        final Block block = blockchain.getBlock(1);
+        final Block block2 = blockchain.getBlock(2);
+
+        changeField(block, "metaData", "Manipulate data");
+        changeField(block, "hash", block.calculateHash());
+
+        changeField(block2, "previousHash", block.getHash());
+        changeField(block2, "hash", block2.calculateHash());
+
+        assertThat(BlockchainValidator.validate(blockchain)).isFalse();
+    }
+
+    @Test
+    public void shouldValidateCorrectBlockchainWithDifficulty() {
+        BlockchainValidator.setDifficulty(5);
+        setUpBlockchainWithMining();
+
+        final Block block = blockchain.getBlock(1);
+        final Block block2 = blockchain.getBlock(2);
+
+        changeField(block, "metaData", "Manipulate data");
+        changeField(block, "hash", block.calculateHash());
+        block.mineBlock();
+
+        changeField(block2, "previousHash", block.getHash());
+        changeField(block2, "hash", block2.calculateHash());
+        block2.mineBlock();
+
+
+        assertThat(BlockchainValidator.validate(blockchain)).isTrue();
     }
 
     private void setUpBlockchainWithMining() {
@@ -117,5 +146,13 @@ public class BlockchainValidatorTest {
             .block(block2)
             .block(block3)
             .build();
+    }
+
+    private void changeField(Object o, String field, Object newValue) {
+        try {
+            FieldUtils.writeField(o, field, newValue, true);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -9,7 +9,6 @@ import pl.szczep.blockchain.util.KeysHelper;
 import java.math.BigDecimal;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.Arrays;
 
 public class Transaction {
 

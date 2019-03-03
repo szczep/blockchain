@@ -33,8 +33,8 @@ public class BlockchainValidator {
 
             if (isHashOfTheCurrentBlockInvalid(block) ||
                     isHashOfThePreviousBlockInvalid(block, prevHash) ||
-                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block) ||
-                    isAnyTransactionInvalid(block.getTransactions())) {
+                    isAnyTransactionInvalid(block.getTransactions()) ||
+                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block)) {
                 return false;
             }
             prevHash = block.getHash();
@@ -44,7 +44,7 @@ public class BlockchainValidator {
     }
 
     private static boolean isAnyTransactionInvalid(List<Transaction> transactions) {
-        for (Transaction transaction: transactions) {
+        for (Transaction transaction : transactions) {
             if (!transaction.verifySignature()) {
                 logger.warn("The transaction is invalid");
                 return true;

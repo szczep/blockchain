@@ -1,12 +1,11 @@
 package pl.szczep.blockchain.util;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
-import java.security.KeyPair;
-import java.security.Security;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.security.KeyPair;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class DigitalSignatureTest {
 
@@ -15,7 +14,6 @@ public class DigitalSignatureTest {
 
     @BeforeClass
     public static void setUp() {
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         keyPair = KeysHelper.generateKeyPair();
     }
 
