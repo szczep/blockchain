@@ -31,10 +31,13 @@ public class BlockchainValidator {
         String prevHash = Block.GENESIS_HASH;
         for (Block block : blockchain) {
 
-            if (isHashOfTheCurrentBlockInvalid(block) ||
+            if (
+                isHashOfTheCurrentBlockInvalid(block) ||
                     isHashOfThePreviousBlockInvalid(block, prevHash) ||
-                    isAnyTransactionInvalid(block.getTransactions()) ||
-                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block)) {
+                    isAnyTransactionInvalid(block.getTransactions())
+//                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block)
+
+                ) {
                 return false;
             }
             prevHash = block.getHash();

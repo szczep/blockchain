@@ -32,15 +32,18 @@ public class Transaction {
     }
 
     public void generateSignature(PrivateKey privateKey) {
-        String transactionData = KeysHelper.getStringFromKey(sender) +
-                KeysHelper.getStringFromKey(recipient) + value.toString();
+        String transactionData = getTransactionData();
         signature = DigitalSignature.applyECDSASig(privateKey, transactionData);
     }
 
     public boolean verifySignature() {
-        String transactionData = KeysHelper.getStringFromKey(sender) +
-                KeysHelper.getStringFromKey(recipient) + value.toString();
+        String transactionData = getTransactionData();
         return DigitalSignature.verifyECDSASig(sender, transactionData, signature);
+    }
+
+    private String getTransactionData() {
+        return KeysHelper.getStringFromKey(sender) +
+            KeysHelper.getStringFromKey(recipient) + value.toString();
     }
 
     @Override

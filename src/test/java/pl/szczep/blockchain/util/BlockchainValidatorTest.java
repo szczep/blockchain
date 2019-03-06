@@ -99,7 +99,7 @@ public class BlockchainValidatorTest {
 
     @Test
     public void shouldValidateInCorrectBlockchainWithoutMining() {
-        BlockchainValidator.setDifficulty(3);
+        BlockchainValidator.setDifficulty(4);
 
         final Block block = blockchain.getBlock(1);
         final Block block2 = blockchain.getBlock(2);
@@ -115,7 +115,7 @@ public class BlockchainValidatorTest {
 
     @Test
     public void shouldValidateCorrectBlockchainWithDifficulty() {
-        BlockchainValidator.setDifficulty(3);
+        BlockchainValidator.setDifficulty(20);
         setUpBlockchainWithMining();
 
         final Block block = blockchain.getBlock(1);
@@ -146,6 +146,8 @@ public class BlockchainValidatorTest {
             .block(block2)
             .block(block3)
             .build();
+
+        System.out.println(blockchain);
     }
 
     private void changeField(Object o, String field, Object newValue) {
