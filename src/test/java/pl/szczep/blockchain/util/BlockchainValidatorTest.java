@@ -115,7 +115,7 @@ public class BlockchainValidatorTest {
 
     @Test
     public void shouldValidateCorrectBlockchainWithDifficulty() {
-        BlockchainValidator.setDifficulty(20);
+        BlockchainValidator.setDifficulty(3);
         setUpBlockchainWithMining();
 
         final Block block = blockchain.getBlock(1);

@@ -34,8 +34,8 @@ public class BlockchainValidator {
             if (
                 isHashOfTheCurrentBlockInvalid(block) ||
                     isHashOfThePreviousBlockInvalid(block, prevHash) ||
-                    isAnyTransactionInvalid(block.getTransactions())
-//                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block)
+                    isAnyTransactionInvalid(block.getTransactions()) ||
+                    isHashOfTheCurrentBlockNotCompilantToDifficultyPolicy(block)
 
                 ) {
                 return false;
